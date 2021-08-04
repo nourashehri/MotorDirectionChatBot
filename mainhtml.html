@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="maincss.css">   
+
+</head>
+
+<body>
+<div align="center" >
+<form action ="mainhtml.php" method = "POST" > 
+<table style="width:40%">
+       <tr><td></td>
+       <th> <input class ="button1" type="submit" value = " Forword " name = Forword > </th>
+           <td></td>
+        </tr>
+        <br>
+      <tr>
+       <th><input class ="button1" type="submit" value = "Left" name = Left ></th>
+       <th><input class ="button1" type="submit" value = "     Stop     " name = Stop ></th>
+       <th><input class ="button1" type="submit" value = "right" name = Right ></th>
+      </tr>  </div>
+        <br>
+      <tr>
+	  <td></td>
+       <th><input class ="button1" type="submit" value = "Backword " name = Backword ></th>  
+      <td></td>
+	  </tr>
+</table>
+</form> 
+</div>
+<script>
+  window.watsonAssistantChatOptions = {
+      integrationID: "c2559f5d-83a2-4be3-849d-2749cadfac7a", // The ID of this integration.
+      region: "us-south", // The region your integration is hosted in.
+      serviceInstanceID: "dd0fa300-a008-4ec0-9610-5a993671ef0a", // The ID of your service instance.
+      onLoad: function(instance) { instance.render(); }
+    };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+    document.head.appendChild(t);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+{
+  "intents": [
+    {
+      "intent": "الوقت",
+      "examples": [
+        {
+          "text": "الوقت"
+        },
+        {
+          "text": "ماهي اوقات العمل"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "حجوزات",
+      "examples": [
+        {
+          "text": "اريد ان احجز طاولة طعام"
+        },
+        {
+          "text": "اريد حجز جديد"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-currency",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1628061070997",
+      "context": {
+        "date": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_10_1628061071013"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1628061230119",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_1_1628061230120"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "طاولة بكم شخص؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_3_1628061230119",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1628061230120",
+      "previous_sibling": "handler_1_1628061230120"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "حسنا ، بأي يوم ترغب ان يكون حجزك؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_3_1628061070997",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1628061071013",
+      "previous_sibling": "handler_10_1628061071013"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1628061167213",
+      "context": {
+        "time": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_7_1628061167215"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ما الوقت المناسب لكم؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_2_1628061167213",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1628061167215",
+      "previous_sibling": "handler_7_1628061167215"
+    },
+    {
+      "type": "frame",
+      "title": "حجز جديد",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تم الحجز ، نتمنى لك وقتاً طيباً"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#حجوزات",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1628060992802",
+      "previous_sibling": "node_4_1628062299688"
+    },
+    {
+      "type": "standard",
+      "title": "وقت العمل ",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "وقت العمل من الساعه 4 عصراً وحتى الساعة 11 مساءا"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#الوقت",
+      "dialog_node": "node_4_1628062299688",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1628060992802",
+      "variable": "$time",
+      "dialog_node": "slot_2_1628061167213",
+      "previous_sibling": "slot_3_1628061070997"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1628060992802",
+      "variable": "$date",
+      "dialog_node": "slot_3_1628061070997",
+      "previous_sibling": "slot_3_1628061230119"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1628060992802",
+      "variable": "$number",
+      "dialog_node": "slot_3_1628061230119"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_1_1628060992802",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مرحبا، كيف يمكنني مساعدتك؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "تحدث",
+  "language": "ar",
+  "description": ""
+}
